@@ -13,7 +13,6 @@ library(rsconnect)
 library(shiny)
 library(plotly)
 library(dplyr)
-
 #File inputs
 metadata <-
   read.csv(file = "Miseq01_metadata_ITS_table.csv",
@@ -37,21 +36,22 @@ Column {.sidebar}
 -----------------------------------------------------------------------
 
 ```{r}
-                selectInput(
-                   inputId = "sampleType",
-                   label = "Select a sample type to see what fungi are in it:",
-                   choices = sort(unique(metadata$sample_type))
-                 )
 
-                 selectInput(
-                   inputId = "taxonLevel",
-                   label = "Select the fungal taxonomic level that you want to view:",
-                   choices = colnames(taxonomy)[3:9]
-                 )
+  selectInput(
+      inputId = "sampleType",
+      label = "Select a sample type to see what fungi are in it:",
+      choices = sort(unique(metadata$sample_type))
+    )
+
+  selectInput(
+      inputId = "taxonLevel",
+      label = "Select the fungal taxonomic level that you want to view:",
+      choices = colnames(taxonomy)[3:9]
+    )
                  
-                 p("Bubble size indicates the number of sequences")
+    p("Bubble size indicates the number of sequences")
                  
-                 p("Hover over the bubbles for more information")
+    p("Hover over the bubbles for more information")
                  
 ```
 
@@ -151,9 +151,6 @@ Column
              showlegend = FALSE)
   })
   
-  
-  
-
 ```
 
 
@@ -164,19 +161,19 @@ Column {.sidebar}
 -----------------------------------------------------------------------
 
 ```{r}
-                selectInput(
-                   inputId = "fungalTaxon",
-                   label = "Select a fungal genus to see what sample types it's in:",
-                   choices = sort(unique(taxonomy$Genus))
-                 )
-                 
-                 p("Bubble size indicates the number of sequences")
-                 
-                 p("Hover over the bubbles for more information")
-                 
-                 downloadButton("downloadFile", "Download")
 
-
+  selectInput(
+      inputId = "fungalTaxon",
+      label = "Select a fungal genus to see what sample types it's in:",
+      choices = sort(unique(taxonomy$Genus))
+      )
+                
+    p("Bubble size indicates the number of sequences")
+                 
+    p("Hover over the bubbles for more information")
+                 
+    downloadButton("downloadFile", "Download")
+    
 ```
 
 Column
@@ -246,6 +243,5 @@ Column
              yaxis = list(showgrid = FALSE, title = "Total Reads", type = "log"),
              showlegend = FALSE)
   })
-
+  
 ```
-
